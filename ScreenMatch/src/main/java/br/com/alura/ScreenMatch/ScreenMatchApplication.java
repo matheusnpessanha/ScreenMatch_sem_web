@@ -1,9 +1,6 @@
 package br.com.alura.ScreenMatch;
 
-import br.com.alura.ScreenMatch.model.DadosEpisodios;
-import br.com.alura.ScreenMatch.model.DadosSerie;
-import br.com.alura.ScreenMatch.service.ConsumoAPI;
-import br.com.alura.ScreenMatch.service.ConverteDados;
+import br.com.alura.ScreenMatch.Principal.Principal;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -19,15 +16,17 @@ public class ScreenMatchApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		var consumoAPI = new ConsumoAPI();
-		var json = consumoAPI.obterDados("https://www.omdbapi.com/?t=gilmore+girls&&apikey=b6ae4f45");
-		System.out.println(json);
-		ConverteDados conversor = new ConverteDados();
-		DadosSerie dados = conversor.obterDados(json, DadosSerie.class);
-		System.out.println(dados);
-		json = consumoAPI.obterDados("https://www.omdbapi.com/?t=gilmore+girls&season=1&episode=2&apikey=b6ae4f45");
-		DadosEpisodios dadosEp = conversor.obterDados(json, DadosEpisodios.class);
-		System.out.println(dadosEp);
+		Principal principal = new Principal();
+		principal.exibeMenu();
+
+//		List<DadosTemporadas> temporadas = new ArrayList<>();
+//
+//		for (int i = 1; i <= dados.totalTemporadas() ; i++) {
+//			json = consumoAPI.obterDados("https://www.omdbapi.com/?t=gilmore+girls&season=" + i +"&apikey=b6ae4f45");
+//			DadosTemporadas dadosTemp = conversor.obterDados(json, DadosTemporadas.class);
+//			temporadas.add(dadosTemp);
+//		}
+//		temporadas.forEach(System.out::println);
 	}
 
 
